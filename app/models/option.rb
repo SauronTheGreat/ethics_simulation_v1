@@ -1,4 +1,5 @@
 class Option < ActiveRecord::Base
+  #relationships:
  belongs_to :question
 
   #Validations
