@@ -1,0 +1,34 @@
+<h1>Listing questionnaires</h1>
+
+
+<table width="85%" style="margin: auto">
+  <tr>
+	<td><h1>Name</h1></td>
+	<td><h1>Creator</h1></td>
+
+	<td width="10%"></td>
+
+  </tr>
+  <% @questionnaires.each do |questionnaire| %>
+	<tr>
+	  <td style="text-align: left;border: solid 1px #000000"><%= questionnaire.name.titleize %></td>
+	  <td style="text-align: left;border: solid 1px #000000">
+		<%= User.find(questionnaire.user_id).full_name %>
+
+
+	  <td width="10%"></td>
+	  <td class="blacky"><%= link_to image_tag('/images/menu/settings_icon_off.png', :style=>"width:50px;height:50px;", :class=>'rollover', :title=>'Manage'), questionnaire %></td>
+	  <td class="blacky"><%= link_to image_tag('/images/menu/rename_icon_off.png', :style=>"width:40px;height:40px;", :class=>'rollover', :title=>'Rename'), edit_questionnaire_path(questionnaire) %></td>
+	  <td class="blacky"><%= link_to image_tag('/images/menu/delete-icon_off.png', :style=>"width:45px;height:45px;", :class=>'rollover', :title=>'Delete'), questionnaire, :confirm => 'Are you sure?', :method => :delete %></td>
+	  <% if !params[:sgid].nil? %>
+		<td><%= link_to 'Use it !', use_questionnaire_path(:sgid=>params[:sgid], :questionnaire=>params[:questionnaire], :questionnaire_id=>questionnaire.id) %></td>
+	  <% end %>
+
+	</tr>
+  <% end %>
+</table>
+
+
+
+
+<%= link_to 'New Questionnaire', new_questionnaire_path %>

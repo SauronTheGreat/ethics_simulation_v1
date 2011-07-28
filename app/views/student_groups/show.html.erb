@@ -1,0 +1,30 @@
+<p id="notice"><%= flash[:notice] %></p>
+
+<h1><%= @student_group.name.titleize %></h1>
+<br/>
+
+
+<table style="width:90%">
+  <tr>
+	<td height="100%" width="40%"><%= link_to 'Manage Students', {:controller => :student_group_users, :action => 'new', :sgid=>@student_group.id}, :style=>"font-size:16px;height:200px; width:100%" %></td>
+	<td>
+	  <table width="100%">
+		<tr>
+		  <td><%= link_to 'Assign PreQuiz Survey', questionnaires_path(:sgid=>@student_group.id, :questionnaire=>"PreQuestionnaire"), :class=>"large_wide_button" %></td>
+		</tr>
+		<tr>
+		  <td><%= link_to 'Create  Quiz ', questionnaires_path(:sgid=>@student_group.id, :questionnaire=>"Quiz"), :class=>"large_wide_button" %></td>
+		</tr>
+		<tr>
+		  <td><%= link_to 'Assign PostQuiz Survey', questionnaires_path(:sgid=>@student_group.id, :questionnaire=>"PostQuestionnaire"), :class=>"large_wide_button" %></td>
+		</tr>
+        <tr>
+		  <td><%= link_to 'Create Questionnaire', new_questionnaire_path(:sgid=>@student_group.id, :questionnaire=>"PostQuestionnaire"), :class=>"large_wide_button" %></td>
+		</tr>
+
+	  </table>
+	</td>
+  </tr>
+</table>
+<br/>
+<br/>

@@ -1,0 +1,10 @@
+<%= form_tag({:action => 'pick_data'},:multipart => true) do %>
+
+Select File :
+<%= file_field 'upload', 'datafile' %>
+
+<%= submit_tag "Upload" %>
+
+<% end %>
+
+

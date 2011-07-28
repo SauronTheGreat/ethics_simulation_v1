@@ -1,0 +1,54 @@
+<%= form_tag :action => 'create', :questionnaire=>params[:questionnaire] do %>
+
+
+  <% @player_answers.each_with_index do |player_answer, index| %>
+	<%= fields_for "player_answers[#{index}]", player_answer do |f| %>
+
+	  <%= f.hidden_field :player_id, :value=>Player.find_by_user_id(current_user.id) %>
+
+	  <%= f.hidden_field :answer_after_self_scoring, :value=>0 %>
+
+
+	  <%= f.hidden_field :question_id, :value=>@questions[index].id %>
+	  <ul>
+		<li> <%= @questions[index].statement %>  </li>
+		<br>
+		<% if @questions[index].options.count == 0 %>
+		  <%= f.hidden_field :answer, :value=>0 %>
+		<% else %>
+
+		  <% if @questions[index].options.count == 25 %>
+			<table>
+			  <tr>
+			  <% @questions[index].options.each_with_index do |option, i| %>
+				<td><%= check_box_tag "check_box_#{i+1}", option.name %>	   <%= option.name %></td>  <br>
+				<% if (i+1) % 5 == 0 %>
+
+							 </tr>
+						 <% end %>
+			  <% end %>
+			  </table>
+		  <% else %>
+			<% @questions[index].options.each do |option| %>
+			  <%= f.radio_button :answer, option.option_number %>	   <%= option.name %>  <br>
+			<% end %>
+
+
+		  <% end %>
+
+		  </ul>
+		<% end %>
+
+
+
+
+
+	<% end %>
+  <% end %>
+  <%= submit_tag %>
+
+
+<% end %>
+
+
+

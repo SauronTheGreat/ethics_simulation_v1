@@ -1,0 +1,39 @@
+<center>
+
+  <font color="#8a2be2">
+    <div id="content">
+      <span style="text-decoration: underline;">  <%= "The Given Matrix is :" %>    </span>
+      <br/>
+      <br/>
+	  </div>
+  </font>
+
+
+
+  <table border="1" width="40%" bgcolor="gold">
+    <tr>
+      <% for i in 1..25 %>
+
+          <td style="width:20%" class="alertbod"><%= check_box_tag "check_box_#{i}", @new_list[i-1] %>
+            <%= "#{@new_list[i-1]}" %>  </td>
+
+          <% if i % 5 == 0 %>
+
+              </tr>
+          <% end %>
+
+      <% end %>
+      </table>
+
+  <br/>
+
+
+  <div class="actions">
+    <%= link_to 'Save Matrix',:action => 'add_sum',:question_id=>params[:question_id] %> &nbsp;&nbsp;&nbsp;
+	<%= link_to 'Refresh  Matrix',:action => 'index',:question_id=>params[:qid] %>
+
+
+  </div>
+</center>
+
+

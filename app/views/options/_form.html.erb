@@ -1,0 +1,13 @@
+<%= form_tag :action => 'create' %>
+ <% @options.each_with_index do |option, index| %>
+ <%= fields_for "options[#{index}]", option do |f| %>
+
+   <%= f.hidden_field :question_id, :value=>params[:qid].to_i %>
+
+ <%="Option #{index}:"%> <%= f.text_field :name %>
+          <br> <br> <br>
+
+ <% end %>
+ <% end %>
+<%= submit_tag %>
+
